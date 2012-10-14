@@ -14,7 +14,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 
-
 public class MyWebElement implements WebElement {
 	protected WebElement webElement;
 	private static final int DEFAULT_TIMEOUT_MILLIS = 5000;
@@ -30,6 +29,11 @@ public class MyWebElement implements WebElement {
 		} catch (WebDriverException e) {
 			throw new WebDriverException("can't click WebElement[" + toString() + "]", e);
 		}
+	}
+
+	public void clickAndWait() {
+		// TODO
+		throw new IllegalStateException("This method is not implemented yet !");
 	}
 
 	@Override
@@ -162,7 +166,7 @@ public class MyWebElement implements WebElement {
 	public static void waitFor(MyWebElement element, By by) {
 		waitFor(new MyWebElement(element.findElement(By.tagName("html"))), by, DEFAULT_TIMEOUT_MILLIS);
 	}
-	
+
 	public static void waitFor(MyWebElement element, By by, int timeoutMillis) {
 		long end = System.currentTimeMillis() + timeoutMillis;
 		MyWebElement result = null;

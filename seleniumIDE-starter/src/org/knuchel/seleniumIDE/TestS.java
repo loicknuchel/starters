@@ -14,8 +14,11 @@ public class TestS {
 	private String baseUrl;
 	private StringBuffer verificationErrors = new StringBuffer();
 	
-	public static void main(String[] args) {
-		WebDriver driver = new FirefoxDriver();
+	public static void main(String[] args) throws Exception {
+		TestS t = new TestS();
+		t.setUp();
+		t.testS();
+		t.tearDown();
 	}
 	
 	@Before
