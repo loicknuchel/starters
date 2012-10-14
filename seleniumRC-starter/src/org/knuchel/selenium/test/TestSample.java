@@ -4,10 +4,10 @@ import org.knuchel.selenium.extentions.MyWebDriver;
 import org.knuchel.selenium.pages.global.State;
 
 public class TestSample {
-	private MyWebDriver webdriver;
+	private MyWebDriver webDriver;
 
-	public TestSample(MyWebDriver webdriver) {
-		this.webdriver = webdriver;
+	public TestSample(MyWebDriver webDriver) {
+		this.webDriver = webDriver;
 	}
 
 	/**
@@ -16,10 +16,11 @@ public class TestSample {
 	 * @return null if all the test is OK, an error message otherwise
 	 */
 	public String start() {
+		State state = State.getInstance();
 		try {
-			State state = State.getInstance();
 
 		} catch (Exception e) {
+			state.logError(e);
 			e.printStackTrace();
 			return e.getMessage();
 		}

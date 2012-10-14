@@ -1,13 +1,13 @@
-package org.knuchel.selenium.pages.components.form;
+package org.knuchel.selenium.pages.elements.form;
 
 import java.util.List;
 
 import org.knuchel.selenium.extentions.MyWebElement;
-import org.knuchel.selenium.pages.components.MyAbstractComponent;
+import org.knuchel.selenium.pages.elements.MyAbstractElement;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-public class FormSelect extends MyAbstractComponent {
+public class FormSelect extends MyAbstractElement {
 	protected Select select;
 
 	public FormSelect(MyWebElement webElement) {

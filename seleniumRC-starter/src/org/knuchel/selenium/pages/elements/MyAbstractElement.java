@@ -1,12 +1,12 @@
-package org.knuchel.selenium.pages.components;
+package org.knuchel.selenium.pages.elements;
 
 import org.knuchel.selenium.extentions.MyWebElement;
 import org.openqa.selenium.WebElement;
 
-public abstract class MyAbstractComponent {
+public abstract class MyAbstractElement {
 	protected MyWebElement component;
 
-	public MyAbstractComponent(WebElement webElement) {
+	public MyAbstractElement(WebElement webElement) {
 		this.component = new MyWebElement(webElement);
 		loadComponent(webElement);
 	}

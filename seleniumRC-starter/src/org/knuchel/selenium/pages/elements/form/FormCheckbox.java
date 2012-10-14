@@ -1,10 +1,10 @@
-package org.knuchel.selenium.pages.components.form;
+package org.knuchel.selenium.pages.elements.form;
 
 import org.knuchel.selenium.extentions.MyWebElement;
-import org.knuchel.selenium.pages.components.MyAbstractComponent;
+import org.knuchel.selenium.pages.elements.MyAbstractElement;
 import org.openqa.selenium.WebElement;
 
-public class FormCheckbox extends MyAbstractComponent {
+public class FormCheckbox extends MyAbstractElement {
 
 	public FormCheckbox(MyWebElement webElement) {
 		super(webElement);

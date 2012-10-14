@@ -1,12 +1,12 @@
-package org.knuchel.selenium.pages.components.form;
+package org.knuchel.selenium.pages.elements.form;
 
 import java.util.List;
 
 import org.knuchel.selenium.extentions.MyWebElement;
-import org.knuchel.selenium.pages.components.MyAbstractComponent;
+import org.knuchel.selenium.pages.elements.MyAbstractElement;
 import org.openqa.selenium.WebElement;
 
-public class FormRadio extends MyAbstractComponent {
+public class FormRadio extends MyAbstractElement {
 	private List<MyWebElement> components;
 
 	public FormRadio(List<MyWebElement> webElements) {

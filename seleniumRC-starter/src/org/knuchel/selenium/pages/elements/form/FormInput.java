@@ -1,12 +1,12 @@
-package org.knuchel.selenium.pages.components.form;
+package org.knuchel.selenium.pages.elements.form;
 
 import java.util.Arrays;
 
 import org.knuchel.selenium.extentions.MyWebElement;
-import org.knuchel.selenium.pages.components.MyAbstractComponent;
+import org.knuchel.selenium.pages.elements.MyAbstractElement;
 import org.openqa.selenium.WebElement;
 
-public class FormInput extends MyAbstractComponent {
+public class FormInput extends MyAbstractElement {
 
 	public FormInput(MyWebElement webElement) {
 		super(webElement);

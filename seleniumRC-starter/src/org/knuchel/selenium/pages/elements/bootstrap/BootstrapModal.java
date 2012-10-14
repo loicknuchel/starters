@@ -1,11 +1,11 @@
-package org.knuchel.selenium.pages.components.bootstrap;
+package org.knuchel.selenium.pages.elements.bootstrap;
 
 import org.knuchel.selenium.extentions.MyBy;
 import org.knuchel.selenium.extentions.MyWebElement;
-import org.knuchel.selenium.pages.components.MyAbstractComponent;
+import org.knuchel.selenium.pages.elements.MyAbstractElement;
 import org.openqa.selenium.WebElement;
 
-public class BootstrapModal extends MyAbstractComponent {
+public class BootstrapModal extends MyAbstractElement {
 
 	public BootstrapModal(MyWebElement webElement) {
 		super(webElement);

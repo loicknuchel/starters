@@ -1,12 +1,12 @@
-package org.knuchel.selenium.pages.components.form;
+package org.knuchel.selenium.pages.elements.form;
 
 import org.knuchel.selenium.extentions.MyWebDriver;
 import org.knuchel.selenium.extentions.MyWebElement;
-import org.knuchel.selenium.pages.components.MyAbstractComponent;
+import org.knuchel.selenium.pages.elements.MyAbstractElement;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebElement;
 
-public class FormBtn extends MyAbstractComponent {
+public class FormBtn extends MyAbstractElement {
 
 	public FormBtn(MyWebElement webElement) {
 		super(webElement);

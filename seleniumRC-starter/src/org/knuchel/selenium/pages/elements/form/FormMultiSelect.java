@@ -1,4 +1,4 @@
-package org.knuchel.selenium.pages.components.form;
+package org.knuchel.selenium.pages.elements.form;
 
 import java.util.ArrayList;
 import java.util.List;

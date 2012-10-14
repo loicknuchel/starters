@@ -47,6 +47,11 @@ public class MyWebDriver implements WebDriver, JavascriptExecutor {
 		return new MyWebElement(webDriver.findElement(by));
 	}
 
+	public MyWebElement findElement(String selector) {
+		// TODO
+		throw new IllegalStateException("not implemented !");
+	}
+
 	public String getPageSource() {
 		return webDriver.getPageSource();
 	}

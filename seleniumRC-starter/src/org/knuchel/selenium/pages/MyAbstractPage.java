@@ -1,20 +1,14 @@
 package org.knuchel.selenium.pages;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.knuchel.selenium.config.Config;
-import org.knuchel.selenium.extentions.MyBy;
 import org.knuchel.selenium.extentions.MyWebDriver;
-import org.knuchel.selenium.extentions.MyWebElement;
 import org.knuchel.selenium.pages.global.State;
 
 public abstract class MyAbstractPage {
-	protected MyWebDriver webdriver;
+	protected MyWebDriver webDriver;
 	protected State state;
 
-	public MyAbstractPage(MyWebDriver webdriver) {
-		this.webdriver = webdriver;
+	public MyAbstractPage(MyWebDriver webDriver) {
+		this.webDriver = webDriver;
 		this.state = State.getInstance();
 	}
 
@@ -28,6 +22,6 @@ public abstract class MyAbstractPage {
 	}
 
 	public static class DOM {
-		
+
 	}
 }
