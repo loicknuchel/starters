@@ -49,16 +49,16 @@ public class Urls {
 	}
 
 	private static String urlParams(String... paramNames) {
-		// TODO paramètres facultatifs !
+		// TODO ordre des paramètres inconnu
 		String ret = "";
-		if (paramNames != null) {
+		if (paramNames != null && paramNames.length > 0) {
 			boolean first = true;
 			for (String param : paramNames) {
 				if (first) {
-					ret += "(\\?" + param + "=[^&#]*";
+					ret += "(\\?(" + param + "=[^&#]*)?";
 					first = false;
 				} else {
-					ret += "&" + param + "=[^&#]*";
+					ret += "((&)?" + param + "=[^&#]*)?";
 				}
 			}
 			ret += ")?";

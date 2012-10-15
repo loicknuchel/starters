@@ -7,14 +7,14 @@ import java.util.Date;
 
 import org.apache.commons.io.FileUtils;
 import org.knuchel.selenium.config.Config;
+import org.knuchel.selenium.config.Urls;
 import org.knuchel.selenium.extentions.MyWebDriver;
+import org.knuchel.selenium.pages.MyAbstractPage;
 import org.knuchel.selenium.utils.MyStringUtils;
 
 public class State {
 	private static State INSTANCE = new State();
 	private MyWebDriver webDriver;
-	// private MyAbstractPage currentPage;
-	private ILoadState currentState;
 
 	private State() {
 	}
@@ -27,30 +27,41 @@ public class State {
 		this.webDriver = webdriver;
 	}
 
-	public void logError(Exception e) {
+	public MyWebDriver getWebDriver() {
 		isWebDriver();
+		return webDriver;
+	}
+
+	public MyAbstractPage getPage() {
+		// TODO sample
+		//		String url = webDriver.getCurrentUrl();
+		//		if (Urls.isComputerListUrl(url)) {
+		//			return new ComputerListPage(webDriver);
+		//		} else if (Urls.isNewComputerUrl(url)) {
+		//			return new ComputerPage(webDriver);
+		//		} else if (Urls.isComputerUrl(url)) {
+		//			return new ComputerEditPage(webDriver);
+		//		}
+		throw new IllegalStateException("Unknown state !");
+	}
+
+	public String logError(Exception e) {
+		isWebDriver();
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss.S");
+		String fileName = Config.ASSETS + Config.SEP + "error_" + df.format(new Date());
+		String ret = fileName + ".txt";
 		try {
-			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss.S");
-			String fileName = Config.ASSETS + Config.SEP + "error_" + df.format(new Date());
 			webDriver.takeScreenshot(fileName + ".png");
 			FileUtils.writeStringToFile(new File(fileName + ".txt"), MyStringUtils.convert(e));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-	}
-
-	public void reloadState() {
-		currentState.load(this, webDriver);
+		return ret;
 	}
 
 	private void isWebDriver() {
 		if (webDriver == null) {
 			throw new IllegalStateException("You have to set a webdriver before using this class !");
 		}
-	}
-
-	public MyWebDriver getWebDriver() {
-		isWebDriver();
-		return webDriver;
 	}
 }

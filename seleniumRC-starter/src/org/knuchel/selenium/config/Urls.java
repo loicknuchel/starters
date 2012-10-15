@@ -20,4 +20,26 @@ public class Urls {
 	public static String getBaseUrl() {
 		return BASE_URL.get(Config.ENV);
 	}
+
+	private static String urlParams(String... paramNames) {
+		// TODO ordre des paramètres inconnu
+		String ret = "";
+		if (paramNames != null && paramNames.length > 0) {
+			boolean first = true;
+			for (String param : paramNames) {
+				if (first) {
+					ret += "(\\?(" + param + "=[^&#]*)?";
+					first = false;
+				} else {
+					ret += "((&)?" + param + "=[^&#]*)?";
+				}
+			}
+			ret += ")?";
+		}
+		return ret;
+	}
+
+	private static String urlAnchor() {
+		return "(#.*)?";
+	}
 }
