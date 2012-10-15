@@ -14,31 +14,25 @@ public class TestAddRemoveComputer implements ITestcase {
 	 * 
 	 * @return null if all the test is OK, an error message otherwise
 	 */
-	public String start() {
+	public void start() {
 		State state = State.getInstance();
 		Computer computer = new Computer("new computer", "1900-12-15", "2000-01-12", "IBM");
-		try {
-			ComputerListPage computerListPage = (ComputerListPage) state.getPage();
-			Integer nbComputerInit = computerListPage.getNbComputerFound();
-			computerListPage.createComputer().withComputer(computer).save();
 
-			Assert.assertTrue(computerListPage.isComputerAdded(computer));
-			Assert.assertEquals(Integer.valueOf(nbComputerInit + 1), computerListPage.getNbComputerFound());
+		ComputerListPage computerListPage = (ComputerListPage) state.getPage();
+		Integer nbComputerInit = computerListPage.getNbComputerFound();
+		computerListPage.createComputer().withComputer(computer).save();
 
-			computerListPage.filter(computer.getName()).getComputer(computer.getName()).edit();
-			ComputerEditPage computerEditPage = (ComputerEditPage) state.getPage();
+		Assert.assertTrue(computerListPage.isComputerAdded(computer));
+		Assert.assertEquals(Integer.valueOf(nbComputerInit + 1), computerListPage.getNbComputerFound());
 
-			Assert.assertTrue(computerEditPage.getComputer().equals(computer));
+		computerListPage.filter(computer.getName()).getComputer(computer.getName()).edit();
+		ComputerEditPage computerEditPage = (ComputerEditPage) state.getPage();
 
-			computerEditPage.delete();
+		Assert.assertTrue(computerEditPage.getComputer().equals(computer));
 
-			Assert.assertTrue(computerListPage.isComputerDeleted());
-			Assert.assertEquals(nbComputerInit, computerListPage.getNbComputerFound());
-		} catch (Exception e) {
-			state.logError(e);
-			e.printStackTrace();
-			return e.getMessage();
-		}
-		return null;
+		computerEditPage.delete();
+
+		Assert.assertTrue(computerListPage.isComputerDeleted());
+		Assert.assertEquals(nbComputerInit, computerListPage.getNbComputerFound());
 	}
 }

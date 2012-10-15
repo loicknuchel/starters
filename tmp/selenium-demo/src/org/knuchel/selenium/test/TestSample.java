@@ -1,5 +1,6 @@
 package org.knuchel.selenium.test;
 
+import org.knuchel.selenium.pages.ComputerListPage;
 import org.knuchel.selenium.pages.global.State;
 
 public class TestSample implements ITestcase {
@@ -9,16 +10,10 @@ public class TestSample implements ITestcase {
 	 * 
 	 * @return null if all the test is OK, an error message otherwise
 	 */
-	public String start() {
+	public void start() {
 		State state = State.getInstance();
-		try {
 
-		} catch (Exception e) {
-			state.logError(e);
-			e.printStackTrace();
-			return e.getMessage();
-		}
-		return null;
+		ComputerListPage computerListPage = (ComputerListPage) state.getPage();
 
 	}
 }

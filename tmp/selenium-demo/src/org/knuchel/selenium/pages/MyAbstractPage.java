@@ -11,6 +11,8 @@ public abstract class MyAbstractPage {
 		this.webDriver = webDriver;
 		this.state = State.getInstance();
 	}
+	
+	public abstract void loadDatas();
 
 	public MyAbstractPage pause(int millis) {
 		try {

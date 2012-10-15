@@ -26,7 +26,7 @@ public class Urls {
 	}
 
 	public static boolean isComputerListUrl(String url) {
-		return url.matches(getBaseUrl() + getComputerListUrl() + "(\\?f=[^&#]*)?");
+		return url.matches(getBaseUrl() + getComputerListUrl() + "(\\?(p=[0-9]*)?((&)?f=[^&#]*)?)?");
 	}
 
 	public static String getNewComputerUrl() {

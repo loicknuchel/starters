@@ -47,16 +47,18 @@ public class State {
 		throw new IllegalStateException("Unknown state !");
 	}
 
-	public void logError(Exception e) {
+	public String logError(Exception e) {
 		isWebDriver();
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss.S");
+		String fileName = Config.ASSETS + Config.SEP + "error_" + df.format(new Date());
+		String ret = fileName + ".txt";
 		try {
-			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss.S");
-			String fileName = Config.ASSETS + Config.SEP + "error_" + df.format(new Date());
 			webDriver.takeScreenshot(fileName + ".png");
 			FileUtils.writeStringToFile(new File(fileName + ".txt"), MyStringUtils.convert(e));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+		return ret;
 	}
 
 	private void isWebDriver() {

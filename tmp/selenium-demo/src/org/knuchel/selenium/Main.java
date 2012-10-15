@@ -7,7 +7,7 @@ import org.knuchel.selenium.extentions.MyWebDriver;
 import org.knuchel.selenium.pages.global.State;
 import org.knuchel.selenium.test.ITestcase;
 import org.knuchel.selenium.test.TestAddRemoveComputer;
-import org.knuchel.selenium.test.TestComputerList;
+import org.knuchel.selenium.test.TestFindComputerInList;
 import org.knuchel.selenium.utils.DriverFactory;
 
 public class Main {
@@ -22,18 +22,11 @@ public class Main {
 			webDriver.get(Urls.getBaseUrl());
 
 			tests();
-			// ComputerListPage computerListPage = new ComputerListPage(webDriver);
-			//
-			// computerListPage.goAddComputer().setComputerDatas("AAA", "1900-05-23", "1999-12-12", "Cray").submitComputerForm();
-			// System.out.println("Computer created: " + computerListPage.isComputerAdded("AAA"));
-			// computerListPage.filter("AAA").getComputer(0).goComputerPage();
-			// ComputerEditPage computerEditPage = new ComputerEditPage(webDriver);
-			//
-			// System.out.println("Computer deleted: " + computerEditPage.deleteComputer().isComputerDeleted());
 
 			Thread.sleep(1 * 1000);
 		} catch (Exception e) {
-			state.logError(e);
+			String logError = state.logError(e);
+			System.out.println("GLOBAL ERROR: see " + logError + " for more informations");
 			e.printStackTrace();
 		} finally {
 			webDriver.quit();
@@ -42,26 +35,23 @@ public class Main {
 	}
 
 	public static void tests() {
-		test(TestComputerList.class);
+		test(TestFindComputerInList.class);
 		test(TestAddRemoveComputer.class);
 	}
 
 	private static void test(Class<? extends ITestcase> clazz) {
-		String result = "init", testName = "UnknownTest";
-		long start = 0, end = 0;
+		String testName = clazz.getSimpleName();
 		try {
-			testName = clazz.getSimpleName();
-			start = System.currentTimeMillis();
+			long start = System.currentTimeMillis();
 			ITestcase testCase = clazz.newInstance();
-			result = testCase.start();
-			end = System.currentTimeMillis();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		if (result == null) {
+			testCase.start();
+			long end = System.currentTimeMillis();
 			System.out.println("OK   : " + testName + " passed in " + ((end - start) / 1000) + " seconds.");
-		} else {
-			System.out.println("FAIL : " + testName + " has errors on " + result);
+		} catch (Exception e) {
+			State state = State.getInstance();
+			String logError = state.logError(e);
+			System.out.println("FAIL : " + testName + " has errors (see " + logError + " for more informations)");
+			e.printStackTrace();
 		}
 	}
 }

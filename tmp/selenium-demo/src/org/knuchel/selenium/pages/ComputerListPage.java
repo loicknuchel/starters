@@ -10,11 +10,10 @@ import org.knuchel.selenium.extentions.MyWebElement;
 import org.knuchel.selenium.pages.elements.ComputerListElement;
 import org.knuchel.selenium.pages.elements.form.FormBtn;
 import org.knuchel.selenium.pages.elements.form.FormInput;
-import org.knuchel.selenium.pages.global.ILoadable;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-public class ComputerListPage extends MyAbstractPage implements ILoadable {
+public class ComputerListPage extends MyAbstractPage {
 	private final List<ComputerListElement> computers = new ArrayList<ComputerListElement>();
 
 	public ComputerListPage(MyWebDriver webDriver) {
@@ -34,8 +33,8 @@ public class ComputerListPage extends MyAbstractPage implements ILoadable {
 		}
 	}
 
-	public ComputerListElement getComputer(int index) {
-		return computers.get(index);
+	public List<ComputerListElement> getComputers() {
+		return computers;
 	}
 
 	public ComputerListElement getComputer(String computerName) {
@@ -47,8 +46,12 @@ public class ComputerListPage extends MyAbstractPage implements ILoadable {
 		return null;
 	}
 
-	public List<ComputerListElement> getComputers() {
-		return computers;
+	public ComputerListElement getComputer(Computer computer) {
+		return getComputer(computer.getName());
+	}
+
+	public ComputerListElement getComputer(int index) {
+		return computers.get(index);
 	}
 
 	public ComputerListPage filter(String text) {
@@ -74,7 +77,7 @@ public class ComputerListPage extends MyAbstractPage implements ILoadable {
 		MyWebElement globalPage = DOM.getGlobalPage(webDriver);
 		FormBtn addComputerBtn = DOM.getAddComputerBtn(globalPage);
 		addComputerBtn.click();
-		return new ComputerPage(webDriver);
+		return (ComputerPage) state.getPage();
 	}
 
 	public boolean isComputerAdded(String computerName) {
@@ -93,6 +96,40 @@ public class ComputerListPage extends MyAbstractPage implements ILoadable {
 		MyWebElement alertMsg = DOM.getAlertMsg(globalPage);
 		String msg = alertMsg.getText();
 		return msg.contains("Computer has been deleted");
+	}
+
+	public boolean hasPreviousPage() {
+		MyWebElement globalPage = DOM.getGlobalPage(webDriver);
+		MyWebElement paginationBlock = DOM.getPaginationBlock(globalPage);
+		MyWebElement previousPageBlock = DOM.getPreviousPageBlock(paginationBlock);
+		return !previousPageBlock.getAttribute("class").contains("disabled");
+	}
+
+	public boolean hasNextPage() {
+		MyWebElement globalPage = DOM.getGlobalPage(webDriver);
+		MyWebElement paginationBlock = DOM.getPaginationBlock(globalPage);
+		MyWebElement nextPageBlock = DOM.getNextPageBlock(paginationBlock);
+		return !nextPageBlock.getAttribute("class").contains("disabled");
+	}
+
+	public ComputerListPage movePreviousPage() {
+		MyWebElement globalPage = DOM.getGlobalPage(webDriver);
+		MyWebElement paginationBlock = DOM.getPaginationBlock(globalPage);
+		MyWebElement previousPageBlock = DOM.getPreviousPageBlock(paginationBlock);
+		FormBtn previousPageBtn = DOM.getPreviousPageBtn(previousPageBlock);
+		previousPageBtn.click();
+		loadDatas();
+		return this;
+	}
+
+	public ComputerListPage moveNextPage() {
+		MyWebElement globalPage = DOM.getGlobalPage(webDriver);
+		MyWebElement paginationBlock = DOM.getPaginationBlock(globalPage);
+		MyWebElement nextPageBlock = DOM.getNextPageBlock(paginationBlock);
+		FormBtn nextPageBtn = DOM.getNextPageBtn(nextPageBlock);
+		nextPageBtn.click();
+		loadDatas();
+		return this;
 	}
 
 	public static class DOM {
@@ -138,6 +175,22 @@ public class ComputerListPage extends MyAbstractPage implements ILoadable {
 
 		public static MyWebElement getPaginationBlock(MyWebElement globalPage) {
 			return globalPage.findElement("#pagination");
+		}
+
+		public static MyWebElement getPreviousPageBlock(MyWebElement paginationBlock) {
+			return paginationBlock.findElement(".prev");
+		}
+
+		public static FormBtn getPreviousPageBtn(MyWebElement previousPageBlock) {
+			return new FormBtn(previousPageBlock.findElement("a"));
+		}
+
+		public static MyWebElement getNextPageBlock(MyWebElement paginationBlock) {
+			return paginationBlock.findElement(".next");
+		}
+
+		public static FormBtn getNextPageBtn(MyWebElement nextPageBlock) {
+			return new FormBtn(nextPageBlock.findElement("a"));
 		}
 	}
 }

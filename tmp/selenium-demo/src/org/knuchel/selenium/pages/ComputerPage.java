@@ -19,6 +19,11 @@ public class ComputerPage extends MyAbstractPage {
 		super(webDriver);
 	}
 
+	@Override
+	public void loadDatas() {
+
+	}
+
 	public ComputerPage withName(String name) {
 		if (name != null) {
 			getComputerNameField().setValue(name);
@@ -92,7 +97,7 @@ public class ComputerPage extends MyAbstractPage {
 		MyWebElement computerForm = DOM.getComputerForm(globalPage);
 		FormBtn computerFormCancel = DOM.getComputerFormCancel(computerForm);
 		computerFormCancel.click();
-		return new ComputerListPage(webDriver);
+		return (ComputerListPage) state.getPage();
 	}
 
 	public String getName() {

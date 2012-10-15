@@ -4,10 +4,14 @@ import org.knuchel.selenium.extentions.MyWebDriver;
 import org.knuchel.selenium.extentions.MyWebElement;
 import org.openqa.selenium.By;
 
-
 public class SamplePage extends MyAbstractPage {
 	public SamplePage(MyWebDriver webDriver) {
 		super(webDriver);
+	}
+
+	@Override
+	public void loadDatas() {
+
 	}
 
 	public static class DOM {

@@ -17,7 +17,7 @@ public class ComputerEditPage extends ComputerPage {
 		FormBtn computerDeleteBtn = DOM
 				.getComputerDeleteBtn(computerDeleteForm);
 		computerDeleteBtn.click();
-		return new ComputerListPage(webDriver);
+		return (ComputerListPage) state.getPage();
 	}
 
 	public static class DOM {
