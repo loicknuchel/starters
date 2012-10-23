@@ -6,7 +6,8 @@ import org.knuchel.selenium.config.Urls;
 import org.knuchel.selenium.extentions.MyWebDriver;
 import org.knuchel.selenium.pages.global.State;
 import org.knuchel.selenium.test.ITestcase;
-import org.knuchel.selenium.test.TestSimple;
+import org.knuchel.selenium.test.TestAddRemoveComputer;
+import org.knuchel.selenium.test.TestFindComputerInList;
 import org.knuchel.selenium.utils.DriverFactory;
 
 public class Main {
@@ -34,9 +35,9 @@ public class Main {
 	}
 
 	public static void tests() {
-		test(TestSimple.class);
-		// test(TestFindComputerInList.class);
-		// test(TestAddRemoveComputer.class);
+//		test(TestSimple.class);
+		 test(TestFindComputerInList.class);
+		 test(TestAddRemoveComputer.class);
 	}
 
 	private static void test(Class<? extends ITestcase> clazz) {
