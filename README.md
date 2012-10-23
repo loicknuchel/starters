@@ -1,4 +1,4 @@
-selenium-starter
+starters
 ================
 
-Some projects to quick start with selenium
+A collection of projects to start quickly with initial structure.
