@@ -6,9 +6,9 @@
 *.ear
 
 # Eclipse folders #
-*/.settings/*
-*/bin/*
-*/target/*
+*.settings*
+*bin*
+*target*
 *.classpath
 *.project
 *chromedriver.log

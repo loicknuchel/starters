@@ -50,7 +50,7 @@ public class State {
 	public String logError(Exception e) {
 		isWebDriver();
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss.S");
-		String fileName = Config.ASSETS + Config.SEP + "error_" + df.format(new Date());
+		String fileName = Config.ASSETS + "\\error_" + df.format(new Date());
 		String ret = fileName + ".txt";
 		try {
 			webDriver.takeScreenshot(fileName + ".png");

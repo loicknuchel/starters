@@ -3,19 +3,17 @@ package org.knuchel.selenium.config;
 import org.knuchel.selenium.beans.Env;
 
 public class Config {
-	public static String SEP = "\\";
 	public static Env ENV = Env.LOCAL;
 	public static String DRIVER = Driver.CHROME;
-	public static String ASSETS = "C:" + SEP + "tmp";
+	// les captures d'écran seront stockées ici par défaut
+	public static String ASSETS = "C:\\tmp";
 
 	public static class LocalPathTo {
-		// can be downloaded here :
-		// http://code.google.com/p/selenium/wiki/ChromeDriver
-		public static final String CHROME_DRIVER = "C:" + SEP + "Tools" + SEP + "selenium" + SEP + "chromedriver.exe";
-		// can be downloaded here :
-		// http://code.google.com/p/selenium/wiki/InternetExplorerDriver
-		public static final String IE_DRIVER = "C:" + SEP + "Tools" + SEP + "selenium" + SEP + "IEDriverServer.exe";
-		public static final String FIREFOX_BROWSER = "C:" + SEP + "Program Files" + SEP + "Mozilla Firefox" + SEP + "firefox.exe";
+		// can be downloaded here : http://code.google.com/p/selenium/wiki/ChromeDriver
+		public static final String CHROME_DRIVER = "C:\\Tools\\selenium\\chromedriver.exe";
+		// can be downloaded here : http://code.google.com/p/selenium/wiki/InternetExplorerDriver
+		public static final String IE_DRIVER = "C:\\Tools\\selenium\\IEDriverServer.exe";
+		public static final String FIREFOX_BROWSER = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
 	}
 
 	public static class Driver {

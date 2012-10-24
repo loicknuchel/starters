@@ -14,7 +14,6 @@ public class Main {
 	public static void main(String[] args) {
 		Config.ENV = Env.LOCAL;
 		Config.DRIVER = Config.Driver.CHROME;
-		Config.ASSETS = "C:\\tmp";
 		MyWebDriver webDriver = DriverFactory.getDriver();
 		State state = State.getInstance();
 		state.setWebDriver(webDriver);

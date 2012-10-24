@@ -91,7 +91,7 @@ public class MyWebDriver implements WebDriver, JavascriptExecutor {
 
 	public void takeScreenshot() throws IOException {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss.S");
-		takeScreenshot(Config.ASSETS + Config.SEP + "screenshot_" + df.format(new Date()) + ".png");
+		takeScreenshot(Config.ASSETS + "\\screenshot_" + df.format(new Date()) + ".png");
 	}
 
 	public Object executeScript(String script, Object... args) {
